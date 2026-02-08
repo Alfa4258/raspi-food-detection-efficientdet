@@ -1,0 +1,12 @@
+#tensorboard
+tensorboard --logdir=efficientdet-lite1-finetune
+
+#train
+python main.py --mode=eval --train_file_pattern=tfrecord3/train.tfrecord --val_file_pattern=tfrecord3/val.tfrecord --model_name=efficientdet-lite1 --model_dir=efficientdet-lite1-finetune --ckpt=efficientdet-lite1 --train_batch_size=4 --eval_batch_size=4 --num_examples_per_epoch=14189 --num_epochs=200 --hparams=voc_config.yaml
+
+#inference
+python model_inspect.py --runmode=infer --model_name=efficientdet-lite1 --ckpt_path=efficientdet-lite1-finetune --hparams=voc_config2.yaml --input_image=images/k.jpg --output_image_dir=img_test 
+
+#export-model
+python model_inspect.py --runmode=saved_model --model_name=efficientdet-lite1 --ckpt_path=efficientdet-lite1-finetune4 --saved_model_dir=models4 --tflite_path=models4/efficientdet-lite1.tflite --hparams=voc_config.yaml
+13846
