@@ -1,4 +1,4 @@
-# Smart Fridge Food Detection
+# Raspberry Pi Food Detection
 
 A Raspberry Pi pipeline that monitors food freshness (*fresh vs rotten*) using an EfficientDet Lite1 model, triggers automated lighting via a magnetic door sensor, and syncs real-time inventory to Firebase Realtime Database.
 
