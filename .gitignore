@@ -1,0 +1,18 @@
+# Environment files
+.env
+.env.*
+!*.example
+
+# Firebase credentials
+*.json
+!package*.json
+
+# Camera and runtime artifacts
+captured_images/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/

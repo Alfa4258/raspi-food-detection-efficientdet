@@ -7,8 +7,11 @@ from datetime import datetime, timedelta
 import firebase_admin
 from firebase_admin import credentials, db
 import os
+from dotenv import load_dotenv
 import logging
 from typing import List, Dict, Tuple
+
+load_dotenv()
 
 # ===================================================================
 # === 1. SETUP
@@ -28,9 +31,17 @@ os.makedirs(IMAGE_DIR, exist_ok=True)
 # === Firebase Setup ===
 previous_labels = set()
 try:
-    cred = credentials.Certificate("smart-fridge-fd12e-firebase-adminsdk-fbsvc-340297fc62.json")
+    firebase_key_path = os.getenv(
+        "FIREBASE_KEY_PATH",
+        "smart-fridge-fd12e-firebase-adminsdk-fbsvc-340297fc62.json"
+    )
+    firebase_db_url = os.getenv(
+        "FIREBASE_DB_URL",
+        "https://smart-fridge-fd12e-default-rtdb.asia-southeast1.firebasedatabase.app/"
+    )
+    cred = credentials.Certificate(firebase_key_path)
     firebase_admin.initialize_app(cred, {
-        'databaseURL': 'https://smart-fridge-fd12e-default-rtdb.asia-southeast1.firebasedatabase.app/'
+        'databaseURL': firebase_db_url
     })
 except Exception as e:
     logger.error(f"Firebase initialization failed: {e}")
